@@ -7,7 +7,11 @@ import numpy as np
 st.set_page_config(page_title="Green Bin AI", page_icon="🌱", layout="centered")
 
 # 2. Menyisipkan Manifest PWA & Meta Theme
-st.markdown('<link rel="manifest" href="./manifest.json">', unsafe_allow_html=True)
+st.markdown('''
+    <link rel="manifest" href="./manifest.json?v=10">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Green Bin AI">
+''', unsafe_allow_html=True)
 
 st.title("🌱 Green Bin AI")
 st.write("AI-Based Waste Detection System.")
@@ -55,5 +59,6 @@ if img_file:
 
     if "B3" in label.upper():
         st.warning("⚠️ Ini sampah B3! Tangani dengan hati-hati.")
+
 
 
