@@ -1,0 +1,15 @@
+{
+  "short_name": "Green Li AI",
+  "name": "Green Li AI: Deteksi Sampah Pintar",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/11326/11326121.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2E7D32",
+  "background_color": "#ffffff"
+}
