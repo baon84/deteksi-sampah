@@ -4,7 +4,7 @@ from PIL import Image, ImageOps
 import numpy as np
 
 # 1. HARUS PALING ATAS
-st.set_page_config(page_title="Green Li AI", page_icon="🌱", layout="centered")
+st.set_page_config(page_title="Green Bin AI", page_icon="🌱", layout="centered")
 
 # 2. Menyisipkan Manifest PWA & Meta Theme
 st.markdown(
@@ -15,15 +15,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("🌱 Green Li AI")
-st.write("Deteksi sampah pintar untuk bumi yang lebih hijau.")
-
-# Panduan Instalasi (PWA)
-with st.expander("📲 Jadikan Aplikasi di HP"):
-    st.info("""
-    **Untuk Android (Chrome):** Klik titik tiga (⋮) di pojok kanan atas > Pilih **'Instal Aplikasi'**.
-    **Untuk iPhone (Safari):** Klik ikon Berbagi (kotak panah atas) > Pilih **'Add to Home Screen'**.
-    """)
+st.title("🌱 Green Bin AI")
+st.write("AI-Based Waste Detection System.")
 
 # Load Model
 @st.cache_resource
@@ -38,7 +31,7 @@ except Exception as e:
     st.error("Model belum terdeteksi. Pastikan file .h5 sudah diunggah ke GitHub.")
 
 # Input Kamera
-img_file = st.camera_input("Ambil Foto Sampah")
+img_file = st.camera_input("Take a photo of the trash")
 
 if img_file:
     image = Image.open(img_file).convert("RGB")
@@ -68,3 +61,4 @@ if img_file:
 
     if "B3" in label.upper():
         st.warning("⚠️ Ini sampah B3! Tangani dengan hati-hati.")
+
