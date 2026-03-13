@@ -2,11 +2,18 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image, ImageOps
 import numpy as np
+# Kode tambahan untuk menyisipkan Manifest PWA
+st.markdown(
+    f"""
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E7D32">
+    """,
+    unsafe_allow_html=True
+)
+st.set_page_config(page_title="Green Bin AI", layout="centered")
 
-st.set_page_config(page_title="Green Li AI", layout="centered")
-
-st.title("🌱 Green Li AI")
-st.write("Deteksi sampah pintar untuk bumi yang lebih hijau.")
+st.title("🌱 Green Bin AI")
+st.write("AI-Based Waste Detection System.")
 
 # Load Model
 @st.cache_resource
@@ -17,7 +24,7 @@ model = load_model()
 class_names = [line.strip() for line in open("labels.txt", "r").readlines()]
 
 # Input Kamera di HP/Laptop
-img_file = st.camera_input("Ambil Foto Sampah")
+img_file = st.camera_input("Take a photo of the trash")
 
 if img_file:
     image = Image.open(img_file).convert("RGB")
@@ -37,4 +44,11 @@ if img_file:
 
     # Tampilan Hasil
     st.success(f"Terdeteksi: **{label[2:]}**")
-    st.write(f"Keyakinan: {score*100:.1f}%")
+
+    st.write(f"Percent : {score*100:.1f}%")
+
+
+
+
+
+
