@@ -2,22 +2,15 @@
   "short_name": "Green Bin AI",
   "name": "Green Bin AI: Deteksi Sampah Pintar",
   "icons": [
-  {
-   
-    "src": "icon.png?v=2",
-    "sizes": "512x512",
-    "type": "image/png"
-    "purpose": "any maskable"
-  }
-    ],
-  "start_url": ".",
+    {
+      "src": "icon.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#2E7D32",
   "background_color": "#ffffff"
-
 }
-
-
-
-
-
