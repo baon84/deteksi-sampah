@@ -1,9 +1,10 @@
 {
+  "id": "/green-bin-ai",
   "short_name": "Green Bin AI",
-  "name": "Green Bin AI: Deteksi Sampah Pintar",
+  "name": "Green Bin AI: Deteksi Sampah",
   "icons": [
     {
-      "src": "logo_baru.png?v=2",
+      "src": "icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -14,4 +15,3 @@
   "theme_color": "#2E7D32",
   "background_color": "#ffffff"
 }
-
