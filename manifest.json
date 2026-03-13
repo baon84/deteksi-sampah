@@ -1,6 +1,6 @@
 {
-  "short_name": "Green Li AI",
-  "name": "Green Li AI: Deteksi Sampah Pintar",
+  "short_name": "Green Bin AI",
+  "name": "Green Bin AI: Deteksi Sampah Pintar",
   "icons": [
   {
    
@@ -16,6 +16,7 @@
   "background_color": "#ffffff"
 
 }
+
 
 
 
