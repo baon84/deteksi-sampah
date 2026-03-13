@@ -2,34 +2,48 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image, ImageOps
 import numpy as np
-# Kode tambahan untuk menyisipkan Manifest PWA
+
+# 1. HARUS PALING ATAS
+st.set_page_config(page_title="Green Li AI", page_icon="🌱", layout="centered")
+
+# 2. Menyisipkan Manifest PWA & Meta Theme
 st.markdown(
-    f"""
+    """
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2E7D32">
     """,
     unsafe_allow_html=True
 )
-st.set_page_config(page_title="Green Bin AI", layout="centered")
 
-st.title("🌱 Green Bin AI")
-st.write("AI-Based Waste Detection System.")
+st.title("🌱 Green Li AI")
+st.write("Deteksi sampah pintar untuk bumi yang lebih hijau.")
+
+# Panduan Instalasi (PWA)
+with st.expander("📲 Jadikan Aplikasi di HP"):
+    st.info("""
+    **Untuk Android (Chrome):** Klik titik tiga (⋮) di pojok kanan atas > Pilih **'Instal Aplikasi'**.
+    **Untuk iPhone (Safari):** Klik ikon Berbagi (kotak panah atas) > Pilih **'Add to Home Screen'**.
+    """)
 
 # Load Model
 @st.cache_resource
 def load_model():
+    # Pastikan file keras_model.h5 dan labels.txt sudah ada di GitHub
     return tf.keras.models.load_model("keras_model.h5", compile=False)
 
-model = load_model()
-class_names = [line.strip() for line in open("labels.txt", "r").readlines()]
+try:
+    model = load_model()
+    class_names = [line.strip() for line in open("labels.txt", "r").readlines()]
+except Exception as e:
+    st.error("Model belum terdeteksi. Pastikan file .h5 sudah diunggah ke GitHub.")
 
-# Input Kamera di HP/Laptop
-img_file = st.camera_input("Take a photo of the trash")
+# Input Kamera
+img_file = st.camera_input("Ambil Foto Sampah")
 
 if img_file:
     image = Image.open(img_file).convert("RGB")
     
-    # Preprocessing agar sesuai input AI (224x224)
+    # Preprocessing (224x224)
     size = (224, 224)
     image = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
     img_array = np.asarray(image).astype(np.float32) / 127.5 - 1
@@ -37,18 +51,20 @@ if img_file:
     data[0] = img_array
 
     # Prediksi
-    prediction = model.predict(data)
-    index = np.argmax(prediction)
-    label = class_names[index]
-    score = prediction[0][index]
+    with st.spinner('Sedang menganalisis...'):
+        prediction = model.predict(data)
+        index = np.argmax(prediction)
+        label = class_names[index]
+        score = prediction[0][index]
 
     # Tampilan Hasil
-    st.success(f"Terdeteksi: **{label[2:]}**")
+    st.divider()
+    # Mengambil teks label setelah angka (misal '0 Organik' jadi 'Organik')
+    clean_label = label.split(' ', 1)[1] if ' ' in label else label
+    
+    st.success(f"Terdeteksi: **{clean_label}**")
+    st.progress(float(score))
+    st.write(f"Tingkat Keyakinan: {score*100:.1f}%")
 
-    st.write(f"Percent : {score*100:.1f}%")
-
-
-
-
-
-
+    if "B3" in label.upper():
+        st.warning("⚠️ Ini sampah B3! Tangani dengan hati-hati.")
