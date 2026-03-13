@@ -3,7 +3,7 @@
   "name": "Green Bin AI: Deteksi Sampah Pintar",
   "icons": [
     {
-      "src": "icon.png?v=2",
+      "src": "logo_baru.png?v=2",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -14,3 +14,4 @@
   "theme_color": "#2E7D32",
   "background_color": "#ffffff"
 }
+
